@@ -27,5 +27,14 @@ namespace Hostitan.API.Models
 
         [DataType(DataType.DateTime)]
         public DateTime created_at { get; set; } = DateTime.Now;
+ public Customers(){}
+        public Customers(string _firstname,string _lastname,string _city,string _email)
+        {
+            this.first_name = _firstname;
+            this.last_name = _lastname;
+            this.city = _city;
+            this.email = _email;
+        }
+
     }
 }
