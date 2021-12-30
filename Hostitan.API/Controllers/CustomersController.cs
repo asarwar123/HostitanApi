@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Hostitan.API.Models;
+using Hostitan.API.Services;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,30 +10,28 @@ namespace Hostitan.API.Controllers
     [Route("customers")]
     public class CustomersController : ControllerBase
     {
-        private static List<Customers> customer = new List<Customers>{
-            new Customers("Azeem","Sarwar","RWP","azeem.sawar@gmail.com"),
-            new Customers("Nadeem","Sarwar","RWP","nadeem.sawar@gmail.com"),
-            new Customers("Naeem","Sarwar","RWP","naeem.sawar@gmail.com")
-        };
+        public ICustomerServices customerServices;
 
+        public CustomersController(ICustomerServices _CustomerService)
+        {
+            customerServices = _CustomerService;
+        }
 
         [HttpGet]
         public ActionResult<Customers> GetCustomers(){
-            return Ok(customer);
+            return Ok(customerServices.GetAllCustomers());
         }        
 
         [HttpGet("{id}")]
         public ActionResult<Customers> GetCustomer(Guid id)
         {
-            return Ok(customer.FirstOrDefault(c => c.id == id));
+            return Ok(customerServices.GetCustomerById(id));
         }
 
         [HttpPost]
         public ActionResult<Customers> AddCustomer(Customers _newCustomer)
         {
-            customer.Add(_newCustomer);
-
-            return Ok(customer);
+            return Ok(customerServices.AddCustomer(_newCustomer));
         }
     }
 }
