@@ -10,6 +10,6 @@ namespace Hostitan.API.Models
         public Status status { get; set; } = Status.placed;
 
         [DataType(DataType.DateTime)]
-        public DateTime created_at { get; set; }        
+        public DateTime created_at { get; set; } = DateTime.Now;       
     }
 }

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Hostitan.API.Models;
+using Hostitan.API.DTO.Customers;
 using Hostitan.API.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +18,20 @@ namespace Hostitan.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Customers> GetCustomers(){
-            return Ok(customerServices.GetAllCustomers());
+        public async Task<ActionResult<ServiceResponse<GetCustomersDTO>>> GetCustomers(){
+            return Ok(await customerServices.GetAllCustomers());
         }        
 
         [HttpGet("{id}")]
-        public ActionResult<Customers> GetCustomer(Guid id)
+        public async Task<ActionResult<ServiceResponse<GetCustomersDTO>>> GetCustomer(Guid id)
         {
-            return Ok(customerServices.GetCustomerById(id));
+            return Ok(await customerServices.GetCustomerById(id));
         }
 
         [HttpPost]
-        public ActionResult<Customers> AddCustomer(Customers _newCustomer)
+        public async Task<ActionResult<ServiceResponse<GetCustomersDTO>>> AddCustomer(AddCustomerDTO _newCustomer)
         {
-            return Ok(customerServices.AddCustomer(_newCustomer));
+            return Ok(await customerServices.AddCustomer(_newCustomer));
         }
     }
 }
