@@ -33,5 +33,21 @@ namespace Hostitan.API.Controllers
         {
             return Ok(await customerServices.AddCustomer(_newCustomer));
         }
+
+        /////////////////////////Orders Details
+
+        [HttpGet]
+        [Route("/{id}/orders")]
+        public IActionResult GetOrders(Guid customer_id)
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("/{id}/orders/{id}")]
+        public IActionResult OrdersByCustomerID(Guid customerId,Guid orderID)
+        {
+                return Ok();
+        }
     }
 }

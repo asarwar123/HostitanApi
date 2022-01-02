@@ -18,12 +18,5 @@ namespace Hostitan.API.Controllers
         {
             return Ok();
         }
-
-        [HttpGet]
-        [Route("/{customer_id}/{order_id}")]
-        public IActionResult GetOrderByCustomerID(Guid id)
-        {
-            return Ok();
-        }  
     }
 }
